@@ -1,0 +1,58 @@
+Je suis un fruit rouge et seduisant,Mais je cache un piege inquietant
+Pomme
+Fraise
+Serise
+A
+Combien de nains Blanche-Neige a -t-elle
+5
+8
+7
+C
+Quel genre de monstre Blanche-Neige combat-elle dans niveau1
+Zombi
+Monstre des neiges
+Monstre aquatique
+B
+Je suis une surface magique et brillante,honnete,mais parfois effrayante
+Couronne
+Pomme
+Miroir
+C
+Que devait manger Blanche-Neige
+Poire
+Pomme
+Pasteque
+B
+Je suis un liquide sombre et fatal,Cree pour un plan machinal
+Eau
+Poison
+Miel
+B
+Quel genre de monstre Blanche-Neige combat-elle dans la fin
+Monstre de feu
+Monstre aquatique
+Zombie
+A
+Je brille quand la nuit est noire,Ma lumière guide dans l’espoir
+Lanterne
+Lune
+Bougie
+B
+
+Je suis souvent en verre ou dorée,Sur une tête je peux briller
+Chapeau
+Casque
+Couronne
+C
+
+Un animal blanc, doux et discret,Dans la neige il peut marcher
+Singe
+Lapin
+Ours polaire
+B
+
+Je suis haute, froide et silencieuse,Tu dois grimper si tu es courageuse
+Colline
+Tour
+Montagne
+C

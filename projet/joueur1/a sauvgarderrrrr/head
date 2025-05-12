@@ -1,0 +1,48 @@
+#ifndef HEAD_H_INCLUDED
+#define HEAD_H_INCLUDED
+
+#include <stdio.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
+
+typedef struct {
+    SDL_Surface *background;
+
+    // Boutons du menu principal
+    SDL_Surface *mono_btn[2];    // mono1.png et mono2.png
+    SDL_Surface *multi_btn[2];   // multi1.png et multi2.png
+    SDL_Surface *retour_btn[2];  // retour1.png et retour2.png
+
+    // Boutons du sous-menu
+    SDL_Surface *avatar1_btn[2]; // avatar1.png et avatar12.png
+    SDL_Surface *avatar2_btn[2]; // avatar2.png et avatar22.png
+    SDL_Surface *input1_btn[2];  // input1.png et input12.png
+    SDL_Surface *input2_btn[2];  // input2.png et input22.png
+    SDL_Surface *valider_btn[2]; // valider1.png et valider2.png
+
+    // Positions des boutons
+    SDL_Rect pos_btn_mono;
+    SDL_Rect pos_btn_multi;
+    SDL_Rect pos_btn_retour;
+
+    SDL_Rect pos_btn_avatar1;
+    SDL_Rect pos_btn_avatar2;
+    SDL_Rect pos_btn_input1;
+    SDL_Rect pos_btn_input2;
+    SDL_Rect pos_btn_valider;
+
+    // Musique et sons
+    Mix_Music *bg_music;
+    Mix_Chunk *hover_sound;
+} sous_menu_joueur;
+
+// Prototypes des fonctions
+void init_sous_menu_joueur(sous_menu_joueur *sm);
+void afficher_interface_principale(sous_menu_joueur *sm, SDL_Surface *ecran, SDL_Event event, int *indice_ecran, int *quitter);
+void afficher_interface_secondaire(sous_menu_joueur *sm, SDL_Surface *ecran, SDL_Event event, int *indice_ecran, int *quitter);
+void afficher_boutons_secondaire(sous_menu_joueur *sm, SDL_Surface *ecran, SDL_Event event);
+int touche_souris(SDL_Rect pos_btn, SDL_Event event);
+
+#endif

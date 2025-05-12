@@ -1,0 +1,263 @@
+#include "head.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
+
+void init_sous_menu_joueur(sous_menu_joueur *sm) {
+    // Initialisation de la structure à zéro pour éviter les pointeurs non initialisés
+    *sm = (sous_menu_joueur){0};
+
+    // Chargement de l'arrière-plan
+    sm->background = IMG_Load("background.png");
+    if (!sm->background) {
+        fprintf(stderr, "Erreur de chargement de l'image background: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    // Chargement des boutons du menu principal
+    sm->mono_btn[0] = IMG_Load("mono1.png");
+    if (!sm->mono_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de mono1.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->mono_btn[1] = IMG_Load("mono2.png");
+    if (!sm->mono_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de mono2.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    sm->multi_btn[0] = IMG_Load("multi1.png");
+    if (!sm->multi_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de multi1.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->multi_btn[1] = IMG_Load("multi2.png");
+    if (!sm->multi_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de multi2.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    sm->retour_btn[0] = IMG_Load("retour1.png");
+    if (!sm->retour_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de retour1.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->retour_btn[1] = IMG_Load("retour.png");
+    if (!sm->retour_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de retour2.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    // Chargement des boutons du sous-menu
+    sm->avatar1_btn[0] = IMG_Load("avatar1.png");
+    if (!sm->avatar1_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de avatar1.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->avatar1_btn[1] = IMG_Load("avatar12.png");
+    if (!sm->avatar1_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de avatar12.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    sm->avatar2_btn[0] = IMG_Load("avatar21.png");
+    if (!sm->avatar2_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de avatar21.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->avatar2_btn[1] = IMG_Load("avatar22.png");
+    if (!sm->avatar2_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de avatar22.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    sm->input1_btn[0] = IMG_Load("input11.png");
+    if (!sm->input1_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de input1.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->input1_btn[1] = IMG_Load("input12.png");
+    if (!sm->input1_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de input12.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    sm->input2_btn[0] = IMG_Load("input21.png");
+    if (!sm->input2_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de input2.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->input2_btn[1] = IMG_Load("input22.png");
+    if (!sm->input2_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de input22.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    sm->valider_btn[0] = IMG_Load("valider1.png");
+    if (!sm->valider_btn[0]) {
+        fprintf(stderr, "Erreur de chargement de valider1.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+    sm->valider_btn[1] = IMG_Load("valider2.png");
+    if (!sm->valider_btn[1]) {
+        fprintf(stderr, "Erreur de chargement de valider2.png: %s\n", IMG_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    // Positions des boutons du menu principal
+    sm->pos_btn_mono.x = 200; sm->pos_btn_mono.y = 200;
+    sm->pos_btn_mono.w = sm->mono_btn[0]->w; sm->pos_btn_mono.h = sm->mono_btn[0]->h;
+
+    sm->pos_btn_multi.x = 400; sm->pos_btn_multi.y = 200;
+    sm->pos_btn_multi.w = sm->multi_btn[0]->w; sm->pos_btn_multi.h = sm->multi_btn[0]->h;
+
+    sm->pos_btn_retour.x = 600; sm->pos_btn_retour.y = 400;
+    sm->pos_btn_retour.w = sm->retour_btn[0]->w; sm->pos_btn_retour.h = sm->retour_btn[0]->h;
+
+    // Positions des boutons du sous-menu
+    sm->pos_btn_avatar1.x = 150; sm->pos_btn_avatar1.y = 300;
+    sm->pos_btn_avatar1.w = sm->avatar1_btn[0]->w; sm->pos_btn_avatar1.h = sm->avatar1_btn[0]->h;
+
+    sm->pos_btn_avatar2.x = 350; sm->pos_btn_avatar2.y = 300;
+    sm->pos_btn_avatar2.w = sm->avatar2_btn[0]->w; sm->pos_btn_avatar2.h = sm->avatar2_btn[0]->h;
+
+    sm->pos_btn_input1.x = 150; sm->pos_btn_input1.y = 400;
+    sm->pos_btn_input1.w = sm->input1_btn[0]->w; sm->pos_btn_input1.h = sm->input1_btn[0]->h;
+
+    sm->pos_btn_input2.x = 350; sm->pos_btn_input2.y = 400;
+    sm->pos_btn_input2.w = sm->input2_btn[0]->w; sm->pos_btn_input2.h = sm->input2_btn[0]->h;
+
+    sm->pos_btn_valider.x = 500; sm->pos_btn_valider.y = 450;
+    sm->pos_btn_valider.w = sm->valider_btn[0]->w; sm->pos_btn_valider.h = sm->valider_btn[0]->h;
+
+    // Chargement de la musique et des sons
+    sm->bg_music = Mix_LoadMUS("Music.mp3");
+    if (!sm->bg_music) {
+        fprintf(stderr, "Erreur de chargement de la musique: %s\n", Mix_GetError());
+    } else {
+        Mix_PlayMusic(sm->bg_music, -1);
+    }
+
+    sm->hover_sound = Mix_LoadWAV("click.wav");
+    if (!sm->hover_sound) {
+        fprintf(stderr, "Erreur de chargement du son: %s\n", Mix_GetError());
+    }
+}
+
+void afficher_interface_principale(sous_menu_joueur *sm, SDL_Surface *ecran, SDL_Event event, int *indice_ecran, int *quitter) {
+    if (!ecran || !sm->background) return; // Vérification des pointeurs
+
+    SDL_BlitSurface(sm->background, NULL, ecran, NULL);
+
+    // Affichage des boutons avec effet de survol
+    if (touche_souris(sm->pos_btn_mono, event)) {
+        if (sm->mono_btn[1]) SDL_BlitSurface(sm->mono_btn[1], NULL, ecran, &sm->pos_btn_mono);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            *indice_ecran = 1; // Passer au sous-menu
+        }
+    } else {
+        if (sm->mono_btn[0]) SDL_BlitSurface(sm->mono_btn[0], NULL, ecran, &sm->pos_btn_mono);
+    }
+
+    if (touche_souris(sm->pos_btn_multi, event)) {
+        if (sm->multi_btn[1]) SDL_BlitSurface(sm->multi_btn[1], NULL, ecran, &sm->pos_btn_multi);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            *indice_ecran = 1; // Passer au sous-menu
+        }
+    } else {
+        if (sm->multi_btn[0]) SDL_BlitSurface(sm->multi_btn[0], NULL, ecran, &sm->pos_btn_multi);
+    }
+
+    if (touche_souris(sm->pos_btn_retour, event)) {
+        if (sm->retour_btn[1]) SDL_BlitSurface(sm->retour_btn[1], NULL, ecran, &sm->pos_btn_retour);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            *quitter = 1; // Quitter le programme
+        }
+    } else {
+        if (sm->retour_btn[0]) SDL_BlitSurface(sm->retour_btn[0], NULL, ecran, &sm->pos_btn_retour);
+    }
+
+    if (ecran) SDL_Flip(ecran);
+}
+
+void afficher_interface_secondaire(sous_menu_joueur *sm, SDL_Surface *ecran, SDL_Event event, int *indice_ecran, int *quitter) {
+    if (!ecran || !sm->background) return; // Vérification des pointeurs
+
+    SDL_BlitSurface(sm->background, NULL, ecran, NULL);
+    afficher_boutons_secondaire(sm, ecran, event);
+    if (ecran) SDL_Flip(ecran);
+
+    // Gestion des événements
+    if (event.type == SDL_MOUSEBUTTONDOWN) {
+        if (touche_souris(sm->pos_btn_valider, event)) {
+            *indice_ecran = 2; // Afficher le menu des meilleurs scores
+        } else if (touche_souris(sm->pos_btn_retour, event)) {
+            *indice_ecran = 0; // Retour au menu principal
+        }
+    }
+}
+
+void afficher_boutons_secondaire(sous_menu_joueur *sm, SDL_Surface *ecran, SDL_Event event) {
+    if (!ecran) return; // Vérification du pointeur
+
+    // Affichage des boutons avec effet de survol
+    if (touche_souris(sm->pos_btn_avatar1, event)) {
+        if (sm->avatar1_btn[1]) SDL_BlitSurface(sm->avatar1_btn[1], NULL, ecran, &sm->pos_btn_avatar1);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            // Action pour avatar1
+        }
+    } else {
+        if (sm->avatar1_btn[0]) SDL_BlitSurface(sm->avatar1_btn[0], NULL, ecran, &sm->pos_btn_avatar1);
+    }
+
+    if (touche_souris(sm->pos_btn_avatar2, event)) {
+        if (sm->avatar2_btn[1]) SDL_BlitSurface(sm->avatar2_btn[1], NULL, ecran, &sm->pos_btn_avatar2);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            // Action pour avatar2
+        }
+    } else {
+        if (sm->avatar2_btn[0]) SDL_BlitSurface(sm->avatar2_btn[0], NULL, ecran, &sm->pos_btn_avatar2);
+    }
+
+    if (touche_souris(sm->pos_btn_input1, event)) {
+        if (sm->input1_btn[1]) SDL_BlitSurface(sm->input1_btn[1], NULL, ecran, &sm->pos_btn_input1);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            // Action pour input1
+        }
+    } else {
+        if (sm->input1_btn[0]) SDL_BlitSurface(sm->input1_btn[0], NULL, ecran, &sm->pos_btn_input1);
+    }
+
+    if (touche_souris(sm->pos_btn_input2, event)) {
+        if (sm->input2_btn[1]) SDL_BlitSurface(sm->input2_btn[1], NULL, ecran, &sm->pos_btn_input2);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            // Action pour input2
+        }
+    } else {
+        if (sm->input2_btn[0]) SDL_BlitSurface(sm->input2_btn[0], NULL, ecran, &sm->pos_btn_input2);
+    }
+
+    if (touche_souris(sm->pos_btn_valider, event)) {
+        if (sm->valider_btn[1]) SDL_BlitSurface(sm->valider_btn[1], NULL, ecran, &sm->pos_btn_valider);
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            // Action pour valider
+        }
+    } else {
+        if (sm->valider_btn[0]) SDL_BlitSurface(sm->valider_btn[0], NULL, ecran, &sm->pos_btn_valider);
+    }
+}
+
+int touche_souris(SDL_Rect pos_btn, SDL_Event event) {
+    if (event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONDOWN) {
+        int x = (event.type == SDL_MOUSEMOTION) ? event.motion.x : event.button.x;
+        int y = (event.type == SDL_MOUSEMOTION) ? event.motion.y : event.button.y;
+        if (x >= pos_btn.x && x <= pos_btn.x + pos_btn.w &&
+            y >= pos_btn.y && y <= pos_btn.y + pos_btn.h) {
+            return 1;
+        }
+    }
+    return 0;
+}
